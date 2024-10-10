@@ -58,5 +58,11 @@ The build of dockerfile is passed, but the cmd line goes on error : `CMD ["node"
 > 2024-10-10 06:01:36 tail: can't open 'start': No such file or directory
 
 This is the content (partial) of the docker image
+
 ![image](https://github.com/user-attachments/assets/3492fb42-3bf8-4f03-8f3b-1cb445875ef1)
+
+The node_modules folder contains : (partial)
+
+![image](https://github.com/user-attachments/assets/121fe4cc-a788-4fd7-b0b6-1a946fae22d9)
+
 
