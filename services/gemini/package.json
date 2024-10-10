@@ -3,7 +3,7 @@
   "scripts": {
     "start": "platformatic start",
     "test": "borp",
-    "clean": "rm -fr ./dist",
+    "clean": "rimraf **/dist --glob",
     "build": "platformatic compile"
   },
   "devDependencies": {
@@ -12,7 +12,9 @@
     "typescript": "^5.5.4"
   },
   "dependencies": {
-    "@platformatic/db": "^2.5.2"
+    "@platformatic/db": "^2.5.2",
+    "@platformatic/runtime": "^2.5.2",
+    "platformatic": "^2.5.2"
   },
   "engines": {
     "node": "^18.8.0 || >=20.6.0"

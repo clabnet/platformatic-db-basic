@@ -1,29 +1,24 @@
 FROM node:20-alpine AS builder
 
-WORKDIR /app
+USER root
 
-COPY package.json package-lock.json platformatic.json ./
-COPY services/gemini/package.json services/gemini/package.json
-
-RUN npm ci
-
-COPY . .
-
-RUN npx platformatic compile
-
-FROM node:20-alpine
+RUN corepack enable && corepack prepare pnpm@latest --activate
 
 WORKDIR /app
 
-COPY package.json package-lock.json platformatic.json ./
+COPY package.json pnpm-lock.yaml tsconfig.json .npmrc ./
 
-RUN npm ci --only=production
+COPY services/gemini/platformatic.json services/gemini/global.d.ts ./
+COPY services/gemini/migrations   migrations
+COPY services/gemini/types        types
+COPY services/gemini/routes       routes
+COPY services/gemini/plugins      plugins
 
-COPY --from=builder /app/services/gemini/dist ./dist
+RUN pnpm install --fix-lockfile --frozen-lockfile
+RUN pnpm run build
 
 EXPOSE 3042
-
-CMD ["node", "node_modules/.bin/platformatic", "start"]
+CMD ["platformatic", "start"]
 
 # Allows developers to exec bash command to debug container internals
 # ENTRYPOINT ["tail", "-f", "/dev/null"]
