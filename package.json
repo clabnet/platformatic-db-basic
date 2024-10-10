@@ -1,11 +1,10 @@
 {
   "name": "platformatic-db-basic",
-  "workspaces": [
-    "services/*"
-  ],
   "scripts": {
-    "start": "platformatic start",
-    "clean": "rm -fr ./dist",
+    "dev": "platformatic start",
+    "clean": "rimraf **/dist --glob",
+    "docker:build": "docker build -t platformatic-db-basic .",
+    "docker:build-nocache": "docker build --progress=plain --no-cache -t platformatic-db-basic .",
     "build": "platformatic compile"
   },
   "devDependencies": {
@@ -16,8 +15,5 @@
   "dependencies": {
     "@platformatic/runtime": "^2.5.2",
     "platformatic": "^2.5.2"
-  },
-  "engines": {
-    "node": "^18.8.0 || >=20.6.0"
   }
 }

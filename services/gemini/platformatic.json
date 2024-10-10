@@ -12,10 +12,20 @@
       "*.sqlite-journal"
     ]
   },
+
   "migrations": {
     "dir": "migrations",
     "autoApply": "{PLT_GEMINI_APPLY_MIGRATIONS}"
   },
+
+  "server": {
+    "logger": {
+      "level": "{PLT_SERVER_LOGGER_LEVEL}"
+    },
+    "hostname": "{PLT_SERVER_HOSTNAME}",
+    "port": "{PORT}"
+  },
+
   "plugins": {
     "paths": [
       {
@@ -26,7 +36,10 @@
         "path": "./routes"
       }
     ],
-    "typescript": "{PLT_GEMINI_TYPESCRIPT}"
+    "typescript": {
+      "enabled": "{PLT_TYPESCRIPT}",
+      "outDir": "dist"
+    }
   },
   "types": {
     "autogenerate": true

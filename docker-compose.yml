@@ -1,0 +1,14 @@
+services:
+  platformatic-db-basic:
+    image: platformatic-db-basic
+    container_name: platformatic-db-basic
+    restart: unless-stopped
+    env_file:
+      - .env.docker
+    ports:
+      - 3042:3042
+
+networks:
+  default:
+    name: horizon_network
+    external: true
